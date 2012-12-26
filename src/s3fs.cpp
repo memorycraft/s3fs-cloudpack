@@ -541,7 +541,7 @@ int get_local_fd(const char* path) {
 
     if(use_cache.size() > 0) {
       // only download files, not folders
-      if (S_ISREG(mode)) {
+      if (S_ISREG(mode) || mode == 0 ) {
         /*if (*/mkdirp(resolved_path + mydirname(path), 0777)/* == -1)
           return -errno*/;
         fd = open(cache_path.c_str(), O_CREAT|O_RDWR|O_TRUNC, mode);
